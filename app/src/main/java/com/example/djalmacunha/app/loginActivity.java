@@ -1,4 +1,5 @@
 package com.example.djalmacunha.app;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ public class loginActivity extends AppCompatActivity{
 
     private BottomNavigationView navigationView;
 
+    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
