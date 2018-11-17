@@ -21,6 +21,7 @@ public class loginActivity extends AppCompatActivity{
     public EditText txtLogin;
     public EditText txtSenha;
     public DBHelper helper;
+    User u;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,34 +58,7 @@ public class loginActivity extends AppCompatActivity{
     }
 
     public void cadastraUsuario(View view){
-        AlertDialog alerta;
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-        builder.setTitle("Cadastro");
-
-        builder.setMessage("Insira seus dados para se cadastrar:\n");
-
-        Context context = view.getContext();
-        LinearLayout layout = new LinearLayout(context);
-        layout.setOrientation(LinearLayout.VERTICAL);
-
-        final EditText txtLoginUser = new EditText(context);
-        txtLoginUser.setHint("Usuário");
-        layout.addView(txtLoginUser);
-
-
-        final EditText txtSenhaUser = new EditText(context);
-        txtSenhaUser.setHint("Senha");
-        layout.addView(txtSenhaUser);
-
-        builder.setView(layout);
-        builder.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                salvarViagem(txtLoginUser.getText().toString(), txtSenhaUser.getText().toString());
-            }
-        });
-        alerta = builder.create();
-        alerta.show();
+        startActivity(new Intent(this, cadastrarActivity.class));
     }
 
     public void btnEntrarOnClick(View view){

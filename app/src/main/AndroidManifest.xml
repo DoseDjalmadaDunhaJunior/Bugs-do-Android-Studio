@@ -19,6 +19,7 @@
         <activity android:name=".menuActivity"/>
         <activity android:name=".adicionarActivity"/>
         <activity android:name=".senhasActivity"/>
+        <activity android:name=".cadastrarActivity"/>
     </application>
 
 </manifest>

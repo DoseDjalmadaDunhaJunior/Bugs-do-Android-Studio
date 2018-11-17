@@ -46,7 +46,19 @@ public class GerenciaSenhas {
                 ? "INSERT INTO senhas(senhaUser,loginUser,site) VALUES ('%s','%s','%s')"
                 : "UPDATE senhas SET senhaUser='%s',loginUser='%s',site='%s' WHERE id=" + senha.id;
 
-        sql = String.format(sql, senha.login, senha.login, senha.site);
+        sql = String.format(sql, senha.senha, senha.login, senha.site);
+        dba.executarComandoSQL(sql);
+    }
+
+    public void salvarUser(User user) {
+        DBAdapter dba = new DBAdapter(ctx);
+        String sql = user.id == 0
+                ? "INSERT INTO user(login,senha) VALUES ('%s','%s')"
+                : "UPDATE user SET login='%s',senha='%s' WHERE id=" + user.id;
+
+        sql = String.format(sql, user.login, user.senha);
+
+
         dba.executarComandoSQL(sql);
     }
 
