@@ -62,6 +62,12 @@ public class GerenciaSenhas {
         dba.executarComandoSQL(sql);
     }
 
+    public void excluirSenha(int id){
+        DBAdapter dba = new DBAdapter(ctx);
+        String sql = "DELETE FROM senhas WHERE id=" + id;
+        dba.executarComandoSQL(sql);
+    }
+
     /*
     public void excluirCliente(int id){
         DbAdapter dba = new DbAdapter(ctx);

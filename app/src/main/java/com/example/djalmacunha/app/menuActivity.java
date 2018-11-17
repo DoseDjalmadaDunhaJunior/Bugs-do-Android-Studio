@@ -28,7 +28,7 @@ public class menuActivity extends AppCompatActivity{
         setContentView(R.layout.menu);
 
         String[] de = {"login", "senha"};
-        int[] para = {R.id.txtLogin, R.id.txtSenha};
+        int[] para = {R.id.txtLogin, R.id.txtSenhaEdicao};
         helper = new DBHelper(this);
     }
 

@@ -1,11 +1,7 @@
 package com.example.djalmacunha.app;
 
 import android.content.ContentValues;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +9,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.database.sqlite.SQLiteDatabase;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class loginActivity extends AppCompatActivity{
@@ -37,7 +32,7 @@ public class loginActivity extends AppCompatActivity{
         w.setStatusBarColor(getResources().getColor(android.R.color.holo_red_light));
 
         txtLogin = (EditText) findViewById(R.id.txtLogin);
-        txtSenha = (EditText) findViewById(R.id.txtSenha);
+        txtSenha = (EditText) findViewById(R.id.txtSenhaEdicao);
 
         helper = new DBHelper(this);
     }

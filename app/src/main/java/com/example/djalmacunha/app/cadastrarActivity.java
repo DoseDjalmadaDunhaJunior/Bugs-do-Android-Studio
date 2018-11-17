@@ -17,7 +17,7 @@ public class cadastrarActivity extends AppCompatActivity {
         setContentView(R.layout.cadastrar);
 
         txtUser = (EditText)findViewById(R.id.txtUser);
-        txtSenha = (EditText)findViewById(R.id.txtSenha);
+        txtSenha = (EditText)findViewById(R.id.txtSenhaEdicao);
     }
 
     public void salvarUser(View view){

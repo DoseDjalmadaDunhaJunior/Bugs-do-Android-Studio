@@ -20,6 +20,8 @@
         <activity android:name=".adicionarActivity"/>
         <activity android:name=".senhasActivity"/>
         <activity android:name=".cadastrarActivity"/>
+        <activity android:name=".detalhesActivity"/>
+        <activity android:name=".EditarActivity"/>
     </application>
 
 </manifest>
