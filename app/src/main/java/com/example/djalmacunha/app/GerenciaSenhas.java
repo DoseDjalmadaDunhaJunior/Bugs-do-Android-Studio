@@ -40,6 +40,31 @@ public class GerenciaSenhas {
         return senhas;
     }
 
+    public List<User> retornarUser() {
+        return retornarUser(null);
+    }
+
+    public List<User> retornarUser(String nomeB) {
+        String sql = "SELECT id,login,senha FROM user";
+        if (nomeB != null && !nomeB.equals(""))
+            sql += " WHERE login LIKE %";
+
+        List<User> users = new ArrayList<>();
+        DBAdapter dba = new DBAdapter(ctx);
+        Cursor cursor = dba.executarConsultaSQL(sql);
+
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(0);
+            String login = cursor.getString(1);
+            String senha = cursor.getString(2);
+            User user = new User(id,login,senha);
+            users.add(user);
+        }
+        dba.fecharConexao();
+
+        return users;
+    }
+
     public void salvarSenhas(Senha senha) {
         DBAdapter dba = new DBAdapter(ctx);
         String sql = senha.id == 0

@@ -7,9 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.Toast;
+
+import java.util.List;
 
 public class loginActivity extends AppCompatActivity{
 
@@ -37,30 +40,36 @@ public class loginActivity extends AppCompatActivity{
         helper = new DBHelper(this);
     }
 
-    public void salvarViagem (String login, String senha){
-        SQLiteDatabase db = helper.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("login", login);
-        values.put("senha", senha);
+    public void carregarUser(View view) {
 
-        long resultado = db.insert("usuarios", null, values);
+        List<User> users = new GerenciaSenhas(this).retornarUser();
+        if (users.size() == 0) {
+            Toast.makeText(this, "Não há nenhum usuário registrado", Toast.LENGTH_SHORT).show();
 
-        if(resultado != -1){
-            Toast.makeText(this,"Erro ao cadastrar" ,Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(this, "Cadastro realizado, insira os dados para fazer login", Toast.LENGTH_SHORT).show();
         }
+        ArrayAdapter<User> clientesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, users);
+
+        String login = txtLogin.getText().toString();
+        String senha = txtSenha.getText().toString();
+
+        for(int i = 0; i < clientesAdapter.getCount(); i++){
+            if(login.equals(clientesAdapter.getItem(i).login) && senha.equals(clientesAdapter.getItem(i).senha)) {
+                startActivity(new Intent(this, menuActivity.class));
+                return;
+            }
+        }
+        Toast.makeText(this,"Usuário ou senha incorretos", Toast.LENGTH_SHORT).show();
     }
+
 
     public void cadastraUsuario(View view){
         startActivity(new Intent(this, cadastrarActivity.class));
     }
 
     public void btnEntrarOnClick(View view){
-        String login = txtLogin.getText().toString();
-        String senha = txtSenha.getText().toString();
 
-        startActivity(new Intent(this, menuActivity.class));
+
+
 /*
         if("abc".equals(login) && "123".equals(senha)){
 

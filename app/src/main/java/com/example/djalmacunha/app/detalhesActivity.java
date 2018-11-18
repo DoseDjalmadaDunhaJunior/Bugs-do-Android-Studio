@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class detalhesActivity extends AppCompatActivity {
@@ -45,7 +46,5 @@ public class detalhesActivity extends AppCompatActivity {
         startActivity(new Intent(this, EditarActivity.class));
         finish();
     }
-
-
 
 }
