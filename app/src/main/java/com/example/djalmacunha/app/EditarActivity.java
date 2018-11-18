@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import java.util.List;
 
+// Classe que edita informações que estão no banco
+
 public class EditarActivity extends AppCompatActivity {
     detalhesActivity detalhes;
     senhasActivity senha;
@@ -20,13 +22,13 @@ public class EditarActivity extends AppCompatActivity {
     EditText txtSenha, txtUser;
 
 
-
-    //Dessa forma fica o cadastro com o clique longo para a exclusão
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.editar);
 
+
+        // Colore a barra superior
         Window w = getWindow();
 
         w.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
@@ -45,6 +47,8 @@ public class EditarActivity extends AppCompatActivity {
         txtUser.setText(senha.login);
     }
 
+
+    // Chamando a listagem novamente quando troca a informação pra tudo ficar atualizado
     public void mostraLista(){
         List<Senha> senhas = new GerenciaSenhas(this).retornarSenhas();
         if(senhas.size() == 0)
@@ -54,6 +58,7 @@ public class EditarActivity extends AppCompatActivity {
         senhasActivity.listView.setAdapter(senha);
     }
 
+    // Salvando uma informçação nova
     public void salvarNovaSenha(View view){
         String senha = txtSenha.getText().toString();
         String user = txtUser.getText().toString();

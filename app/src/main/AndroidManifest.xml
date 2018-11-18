@@ -22,6 +22,7 @@
         <activity android:name=".cadastrarActivity"/>
         <activity android:name=".detalhesActivity"/>
         <activity android:name=".EditarActivity"/>
+        <activity android:name=".configActivity"/>
     </application>
 
 </manifest>

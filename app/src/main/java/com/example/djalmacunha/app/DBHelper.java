@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+// Classe de criação do banco
+
 public class DBHelper extends SQLiteOpenHelper {
 
     static final String DATABASE_NAME = "senha.db";

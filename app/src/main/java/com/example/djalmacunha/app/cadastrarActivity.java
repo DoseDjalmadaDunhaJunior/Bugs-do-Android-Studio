@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+// Classe que faz o cadastro do usuário
+
 public class cadastrarActivity extends AppCompatActivity {
     User s;
 

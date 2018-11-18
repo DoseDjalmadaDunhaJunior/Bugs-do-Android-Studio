@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+// Classe de conexão do banco
+
 public class DBAdapter{
 
     SQLiteDatabase db = null;

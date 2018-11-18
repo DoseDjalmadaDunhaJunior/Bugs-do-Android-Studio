@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+//Classe que armazena pega as informações do usuário
+
 public class adicionarActivity extends AppCompatActivity {
     Senha s;
 

@@ -118,6 +118,7 @@
                 android:id="@+id/btnConfig"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
+                android:onClick="configOnClick"
                 android:src="@drawable/config2"
                 app:cb_color="#ffff4444"
                 app:cb_pressedRingWidth="8dip"

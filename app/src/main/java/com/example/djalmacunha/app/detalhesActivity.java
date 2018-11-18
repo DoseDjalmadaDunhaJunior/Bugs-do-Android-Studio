@@ -9,6 +9,8 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+// Classe que faz o detalhamento de cada senha
+
 public class detalhesActivity extends AppCompatActivity {
     senhasActivity senha;
 
@@ -20,6 +22,8 @@ public class detalhesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detalhes);
 
+
+        // Esse código com w e Window colore a barra superior
         Window w = getWindow();
 
         w.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
@@ -32,6 +36,8 @@ public class detalhesActivity extends AppCompatActivity {
         txtUser = (TextView)findViewById(R.id.txtUser);
         txtSite = (TextView)findViewById(R.id.txtSite);
 
+
+        // Colocando os textos pegos do banco nas caixas de texto
         senhaUser = senha.senhaUser;
         loginUser = senha.login;
         siteUser = senha.site;
@@ -42,6 +48,7 @@ public class detalhesActivity extends AppCompatActivity {
         txtUser.setText(loginUser);
     }
 
+    // Classe que edita sendo chamada
     public void editarOnClick(View view){
         startActivity(new Intent(this, EditarActivity.class));
         finish();

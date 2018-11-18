@@ -6,6 +6,8 @@ import android.database.Cursor;
 import java.util.ArrayList;
 import java.util.List;
 
+// Classe com todas as funções de gerencia do banco
+
 public class GerenciaSenhas {
 
     private Context ctx;
@@ -93,20 +95,9 @@ public class GerenciaSenhas {
         dba.executarComandoSQL(sql);
     }
 
-    /*
-    public void excluirCliente(int id){
-        DbAdapter dba = new DbAdapter(ctx);
-        String sql = "DELETE FROM Clientes WHERE id=" + id;
+    public void exluirUser(int id){
+        DBAdapter dba = new DBAdapter(ctx);
+        String sql = "DELETE FROM user WHERE id=" + id;
         dba.executarComandoSQL(sql);
     }
-
-    public static boolean validarCliente(Cliente c){
-        if(c == null) return false;
-        if(c.nome == null || c.nome.equals("")) return false;
-        if(c.dataNascimento == null || c.dataNascimento.equals("")) return false;
-        if(c.uf == null || c.uf.equals("")) return false;
-        if(c.cidade == null || c.cidade.equals("")) return false;
-        if(c.sexo == null || c.sexo.equals("")) return false;
-        return true;
-    }*/
 }
