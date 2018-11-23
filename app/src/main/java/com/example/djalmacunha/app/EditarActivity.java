@@ -39,9 +39,9 @@ public class EditarActivity extends AppCompatActivity {
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         w.setStatusBarColor(getResources().getColor(android.R.color.holo_red_light));
 
-        txtSenha = (EditText)findViewById(R.id.txtSenhaEdicao);
-        txtUser = (EditText)findViewById(R.id.txtUserEdicao);
-        txtSite = (TextView)findViewById(R.id.txtSiteEdicao);
+        txtSenha = (EditText)findViewById(R.id.txtNovaSenha);
+        txtUser = (EditText)findViewById(R.id.txtNovoUser);
+        txtSite = (TextView)findViewById(R.id.txtSite);
 
 
         txtSite.setText(senha.site);

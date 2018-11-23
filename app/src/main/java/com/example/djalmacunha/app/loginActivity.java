@@ -9,14 +9,11 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.List;
-
 // Classe que faz o login do usuário
 
 public class loginActivity extends AppCompatActivity{
 
-    public EditText txtLogin;
-    public EditText txtSenha;
+    public EditText txtLoginUser, txtSenhaUser;
     public DBHelper helper;
     public static String usuario;
 
@@ -36,8 +33,8 @@ public class loginActivity extends AppCompatActivity{
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         w.setStatusBarColor(getResources().getColor(android.R.color.holo_red_light));
 
-        txtLogin = (EditText) findViewById(R.id.txtLogin);
-        txtSenha = (EditText) findViewById(R.id.txtSenhaEdicao);
+        txtLoginUser = (EditText) findViewById(R.id.txtLogin);
+        txtSenhaUser = (EditText) findViewById(R.id.txtSenha);
 
         db = new DBHelper(this);
     }
@@ -46,8 +43,8 @@ public class loginActivity extends AppCompatActivity{
     public void carregarUser(View view) {
 
 
-        String username = txtLogin.getText().toString();
-        String password = txtSenha.getText().toString();
+        String username = txtLoginUser.getText().toString();
+        String password = txtSenhaUser.getText().toString();
 
         usuario = username;
 
@@ -61,8 +58,8 @@ public class loginActivity extends AppCompatActivity{
             String res = db.loginUser(username, password);
             if (res.equals("OK")) {
                 startActivity(new Intent(loginActivity.this, menuActivity.class));
-                txtLogin.setText("");
-                txtSenha.setText("");
+                txtLoginUser.setText("");
+                txtSenhaUser.setText("");
 
             } else {
                 Toast.makeText(loginActivity.this, "Login ou senha incorretos", Toast.LENGTH_SHORT).show();

@@ -97,7 +97,7 @@
             android:gravity="center">
 
             <TextView
-                android:id="@+id/txtSiteEdicao"
+                android:id="@+id/txtSite"
                 android:layout_width="282dp"
                 android:layout_height="wrap_content"
                 android:text=""
@@ -207,7 +207,7 @@
                 app:srcCompat="@drawable/login2" />
 
             <EditText
-                android:id="@+id/txtSenhaEdicao"
+                android:id="@+id/txtNovaSenha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -250,7 +250,7 @@
                 app:srcCompat="@drawable/user2" />
 
             <EditText
-                android:id="@+id/txtUserEdicao"
+                android:id="@+id/txtNovoUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
