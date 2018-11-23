@@ -12,12 +12,15 @@ import java.util.Map;
 
 public class menuActivity extends AppCompatActivity{
 
+    loginActivity l;
+
     private List<Map<String, Object>> viagens;
     private AlertDialog alertDialog;
     private DBHelper helper;
     private Double valorLimite;
     private int viagemSelecionada;
     private AlertDialog dialogConfirmacao;
+    public static String usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,7 @@ public class menuActivity extends AppCompatActivity{
         String[] de = {"login", "senha"};
         int[] para = {R.id.txtLogin, R.id.txtSenhaEdicao};
         helper = new DBHelper(this);
+        usuario = l.usuario;
     }
 
     // Todas as funções pra troca de tela abaixo

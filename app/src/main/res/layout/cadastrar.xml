@@ -10,7 +10,7 @@
         android:id="@+id/btnSalvar"
         android:layout_width="120dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="73dp"
+        android:layout_marginBottom="84dp"
         android:backgroundTint="@android:color/holo_red_light"
         android:onClick="salvarUser"
         android:text="Salvar"
@@ -28,10 +28,10 @@
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="194dp"
+        android:layout_marginTop="179dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginBottom="17dp"
         app:layout_constraintBottom_toTopOf="@+id/btnSalvar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +65,7 @@
             android:gravity="center">
 
             <TextView
-                android:id="@+id/textView15"
+                android:id="@+id/textView45"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </TableRow>
@@ -76,10 +76,11 @@
             android:gravity="center">
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/textView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </TableRow>
+
 
         <TableRow
             android:layout_width="match_parent"
@@ -104,14 +105,21 @@
 
         </TableRow>
 
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+        </TableRow>
+
     </TableLayout>
 
     <TextView
         android:id="@+id/textView16"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="339dp"
-        android:layout_marginBottom="86dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="333dp"
+        android:layout_marginBottom="80dp"
         android:text="A senha deve conter apenas letras"
         app:layout_constraintBottom_toTopOf="@+id/btnSalvar"
         app:layout_constraintEnd_toEndOf="parent"

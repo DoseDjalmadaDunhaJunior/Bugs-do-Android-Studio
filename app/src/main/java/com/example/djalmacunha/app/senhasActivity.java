@@ -16,6 +16,7 @@ import java.util.List;
 // Classe de cadastro da senha
 
 public class senhasActivity extends AppCompatActivity {
+    menuActivity m;
 
     static ListView listView;
 
@@ -74,7 +75,7 @@ public class senhasActivity extends AppCompatActivity {
     // Função que preenche a listView com o que tem no banco
     public void carregarListagem(){
 
-        List<Senha> senhas = new GerenciaSenhas(this).retornarSenhas();
+        List<Senha> senhas = new GerenciaSenhas(this).retornarSenhas(m.usuario);
         if(senhas.size() == 0){
             Toast.makeText(this, "Você ainda não cadastrou nenhuma senha", Toast.LENGTH_SHORT).show();
 

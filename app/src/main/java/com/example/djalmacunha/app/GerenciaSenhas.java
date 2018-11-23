@@ -2,6 +2,7 @@ package com.example.djalmacunha.app;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,12 +17,12 @@ public class GerenciaSenhas {
         this.ctx = ctx;
     }
 
-    public List<Senha> retornarSenhas() {
-        return retornarSenhas(null);
+    public List<Senha> retornarSenhas(String user) {
+        return retornarSenhas(null, user);
     }
 
-    public List<Senha> retornarSenhas(String nomeB) {
-        String sql = "SELECT id,senhaUser,loginUser,site FROM senhas";
+    public List<Senha> retornarSenhas(String nomeB, String user) {
+        String sql = "SELECT id,senhaUser,loginUser,site, usuario FROM senhas WHERE usuario='" + user +"'";
         if (nomeB != null && !nomeB.equals(""))
             sql += " WHERE senhaUser LIKE %";
 
@@ -34,7 +35,8 @@ public class GerenciaSenhas {
             String senhaUser = cursor.getString(1);
             String login = cursor.getString(2);
             String site = cursor.getString(3);
-            Senha senha = new Senha(id, senhaUser, login, site);
+            String usuario = cursor.getString(4);
+            Senha senha = new Senha(id, senhaUser, login, site, usuario);
             senhas.add(senha);
         }
         dba.fecharConexao();
@@ -42,12 +44,12 @@ public class GerenciaSenhas {
         return senhas;
     }
 
-    public List<User> retornarUser() {
-        return retornarUser(null);
+    public List<User> retornarUser(String usuario) {
+        return retornarUser(null,usuario);
     }
 
-    public List<User> retornarUser(String nomeB) {
-        String sql = "SELECT id,login,senha FROM user";
+    public List<User> retornarUser(String nomeB,String usuario) {
+        String sql = "SELECT id,login,senha FROM user WHERE login='"+usuario + "'";
         if (nomeB != null && !nomeB.equals(""))
             sql += " WHERE login LIKE %";
 
@@ -64,20 +66,31 @@ public class GerenciaSenhas {
         }
         dba.fecharConexao();
 
+
         return users;
     }
 
     public void salvarSenhas(Senha senha) {
         DBAdapter dba = new DBAdapter(ctx);
         String sql = senha.id == 0
-                ? "INSERT INTO senhas(senhaUser,loginUser,site) VALUES ('%s','%s','%s')"
-                : "UPDATE senhas SET senhaUser='%s',loginUser='%s',site='%s' WHERE id=" + senha.id;
+                ? "INSERT INTO senhas(senhaUser,loginUser,site,usuario) VALUES ('%s','%s','%s','%s')"
+                : "UPDATE senhas SET senhaUser='%s',loginUser='%s',site='%s',usuario='%s' WHERE id=" + senha.id;
 
-        sql = String.format(sql, senha.senha, senha.login, senha.site);
+        sql = String.format(sql, senha.senha, senha.login, senha.site, senha.usuario);
         dba.executarComandoSQL(sql);
     }
 
     public void salvarUser(User user) {
+
+        DBAdapter dba = new DBAdapter(ctx);
+        String sql = user.id == 0 ? "INSERT INTO user(login,senha)" +
+                " VALUES ('%s','%s')" : "UPDATE user SET login='%s',senha='%s'" +
+                " WHERE id=" + user.id;
+
+        sql = String.format(sql, user.login, user.senha);
+        dba.executarComandoSQL(sql);
+
+        /*
         DBAdapter dba = new DBAdapter(ctx);
         String sql = user.id == 0
                 ? "INSERT INTO user(login,senha) VALUES ('%s','%s')"
@@ -86,7 +99,7 @@ public class GerenciaSenhas {
         sql = String.format(sql, user.login, user.senha);
 
 
-        dba.executarComandoSQL(sql);
+        dba.executarComandoSQL(sql);*/
     }
 
     public void excluirSenha(int id){
