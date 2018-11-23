@@ -21,6 +21,8 @@ public class EditarActivity extends AppCompatActivity {
     TextView txtSite;
     EditText txtSenha, txtUser;
 
+    menuActivity m;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,7 @@ public class EditarActivity extends AppCompatActivity {
 
     // Chamando a listagem novamente quando troca a informação pra tudo ficar atualizado
     public void mostraLista(){
-        List<Senha> senhas = new GerenciaSenhas(this).retornarSenhas();
+        List<Senha> senhas = new GerenciaSenhas(this).retornarSenhas(m.usuario);
         if(senhas.size() == 0)
             Toast.makeText(this,"Você ainda não cadastrou nenhuma senha",Toast.LENGTH_SHORT).show();
 
@@ -63,7 +65,7 @@ public class EditarActivity extends AppCompatActivity {
         String senha = txtSenha.getText().toString();
         String user = txtUser.getText().toString();
 
-        Senha senhas = new Senha(detalhes.idd,senha,user,detalhes.siteUser);
+        Senha senhas = new Senha(detalhes.idd,senha,user,detalhes.siteUser, m.usuario);
         new GerenciaSenhas(this).salvarSenhas(senhas);
         Toast.makeText(this, "Senha atualizada", Toast.LENGTH_SHORT).show();
         mostraLista();

@@ -13,6 +13,7 @@ import java.util.List;
 // Classe de configuração, onde é possível limpar todos os dados do app
 
 public class configActivity extends AppCompatActivity {
+    menuActivity m;
 
     Button btnDeletar, btnLimpar;
 
@@ -27,7 +28,7 @@ public class configActivity extends AppCompatActivity {
 
     public void limparTudo(View view){
         // List que armazena as senhas que são obtidas do banco
-        List<Senha> senhas = new GerenciaSenhas(this).retornarSenhas();
+        List<Senha> senhas = new GerenciaSenhas(this).retornarSenhas(m.usuario);
 
         ArrayAdapter<Senha> clientesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, senhas);
 
@@ -58,7 +59,7 @@ public class configActivity extends AppCompatActivity {
     // Mesma coisa que a função de cima, mas só pras senhas
     public void limparSenhas(View view) {
 
-        List<Senha> senhas = new GerenciaSenhas(this).retornarSenhas();
+        List<Senha> senhas = new GerenciaSenhas(this).retornarSenhas(m.usuario);
         if (senhas.size() == 0) {
             Toast.makeText(this, "Não há senha para ser deletada", Toast.LENGTH_SHORT).show();
             return;

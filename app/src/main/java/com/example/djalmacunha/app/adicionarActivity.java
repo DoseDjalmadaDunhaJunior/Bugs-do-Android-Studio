@@ -10,6 +10,9 @@ import android.widget.Toast;
 
 public class adicionarActivity extends AppCompatActivity {
     Senha s;
+    menuActivity m;
+
+    //public static String usuario;
 
     EditText txtSenha, txtLogin, txtSite;
 
@@ -28,8 +31,9 @@ public class adicionarActivity extends AppCompatActivity {
         String senha = txtSenha.getText().toString();
         String login = txtLogin.getText().toString();
         String site = txtSite.getText().toString();
+        String usuario = m.usuario;
 
-        Senha s = new Senha(id, senha, login, site);
+        Senha s = new Senha(id, senha, login, site, usuario);
         new GerenciaSenhas(this).salvarSenhas(s);
         Toast.makeText(this,"Senha salva" ,Toast.LENGTH_SHORT).show();
         finish();

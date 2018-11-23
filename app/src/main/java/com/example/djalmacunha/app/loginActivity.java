@@ -19,6 +19,7 @@ public class loginActivity extends AppCompatActivity{
     public EditText txtLogin;
     public EditText txtSenha;
     public DBHelper helper;
+    public static String usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,31 @@ public class loginActivity extends AppCompatActivity{
     // Verificando se o usuário está correto
     public void carregarUser(View view) {
 
+        String loginUser = txtLogin.getText().toString();
+        String senhaUser = txtSenha.getText().toString();
+        usuario = loginUser;
+
+        if(loginUser.equals("")) {
+            Toast.makeText(this, "Digite algum usuário para logar", Toast.LENGTH_SHORT).show();
+        }
+        else if(senhaUser.equals("")){
+            Toast.makeText(this, "Digite sua senha para logar", Toast.LENGTH_SHORT).show();
+
+        }
+        else {
+
+            String res = helper.loginUser(loginUser,senhaUser);
+            if(res.equals("OK")){
+                startActivity(new Intent(this, menuActivity.class));
+
+            }
+            else{
+                Toast.makeText(this, "Login ou senha incorretos. Tente novamente", Toast.LENGTH_SHORT).show();
+
+            }
+
+        }
+/*
         List<User> users = new GerenciaSenhas(this).retornarUser();
         if (users.size() == 0) {
             Toast.makeText(this, "Não há nenhum usuário registrado", Toast.LENGTH_SHORT).show();
@@ -62,7 +88,7 @@ public class loginActivity extends AppCompatActivity{
                 return;
             }
         }
-        Toast.makeText(this,"Usuário ou senha incorretos", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Usuário ou senha incorretos", Toast.LENGTH_SHORT).show();*/
     }
 
     // Chamando a classe de cadastro

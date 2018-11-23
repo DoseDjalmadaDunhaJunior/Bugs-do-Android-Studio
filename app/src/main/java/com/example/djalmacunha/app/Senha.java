@@ -9,16 +9,18 @@ public class Senha implements Serializable {
     String senha;
     String login;
     String site;
+    String usuario;
 
-    public Senha(String senha, String login, String site) {
-        this(0, senha, login, site);
+    public Senha(String senha, String login, String site, String usuario) {
+        this(0, senha, login, site, usuario);
     }
 
-    public Senha(int id, String senha, String login, String site) {
+    public Senha(int id, String senha, String login, String site, String usuario) {
         this.id = id;
         this.senha = senha;
         this.login = login;
         this.site = site;
+        this.usuario = usuario;
     }
 
     @Override

@@ -16,12 +16,12 @@ public class GerenciaSenhas {
         this.ctx = ctx;
     }
 
-    public List<Senha> retornarSenhas() {
-        return retornarSenhas(null);
+    public List<Senha> retornarSenhas(String user) {
+        return retornarSenhas(null, user);
     }
 
-    public List<Senha> retornarSenhas(String nomeB) {
-        String sql = "SELECT id,senhaUser,loginUser,site FROM senhas";
+    public List<Senha> retornarSenhas(String nomeB, String user) {
+        String sql = "SELECT id,senhaUser,loginUser,site, usuario FROM senhas WHERE usuario='" + user +"'";
         if (nomeB != null && !nomeB.equals(""))
             sql += " WHERE senhaUser LIKE %";
 
@@ -34,7 +34,8 @@ public class GerenciaSenhas {
             String senhaUser = cursor.getString(1);
             String login = cursor.getString(2);
             String site = cursor.getString(3);
-            Senha senha = new Senha(id, senhaUser, login, site);
+            String usuario = cursor.getString(4);
+            Senha senha = new Senha(id, senhaUser, login, site, usuario);
             senhas.add(senha);
         }
         dba.fecharConexao();
@@ -70,10 +71,10 @@ public class GerenciaSenhas {
     public void salvarSenhas(Senha senha) {
         DBAdapter dba = new DBAdapter(ctx);
         String sql = senha.id == 0
-                ? "INSERT INTO senhas(senhaUser,loginUser,site) VALUES ('%s','%s','%s')"
-                : "UPDATE senhas SET senhaUser='%s',loginUser='%s',site='%s' WHERE id=" + senha.id;
+                ? "INSERT INTO senhas(senhaUser,loginUser,site,usuario) VALUES ('%s','%s','%s','%s')"
+                : "UPDATE senhas SET senhaUser='%s',loginUser='%s',site='%s',usuario='%s' WHERE id=" + senha.id;
 
-        sql = String.format(sql, senha.senha, senha.login, senha.site);
+        sql = String.format(sql, senha.senha, senha.login, senha.site, senha.usuario);
         dba.executarComandoSQL(sql);
     }
 
