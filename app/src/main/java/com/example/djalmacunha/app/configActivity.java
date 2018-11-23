@@ -22,7 +22,7 @@ public class configActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.configuracoes);
 
-        btnLimpar = (Button) findViewById(R.id.btnLimpar);
+        btnLimpar = (Button) findViewById(R.id.btnDeletarUser);
         btnDeletar = (Button) findViewById(R.id.btnDeletar);
     }
 
@@ -37,7 +37,7 @@ public class configActivity extends AppCompatActivity {
             new GerenciaSenhas(getBaseContext()).excluirSenha(clientesAdapter.getItem(i).id);
         }
 
-        List<User> users = new GerenciaSenhas(this).retornarUser();
+        List<User> users = new GerenciaSenhas(this).retornarUser(m.usuario);
         ArrayAdapter<User> clientesAdapter2 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, users);
 
         for(int i = 0; i < clientesAdapter2.getCount(); i++){
@@ -45,7 +45,7 @@ public class configActivity extends AppCompatActivity {
         }
 
 
-        Toast.makeText(this, "Todas as informações foram deletadas. Você voltará para a tela de login", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Seus dados foram deletados. Faça login com outro usuário ou cadastre-se", Toast.LENGTH_SHORT).show();
 
 
         // Um jeito de trocar de activity fechando todas as anteriores
@@ -74,4 +74,5 @@ public class configActivity extends AppCompatActivity {
 
         finish();
     }
+
 }

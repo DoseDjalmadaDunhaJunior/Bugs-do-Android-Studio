@@ -2,6 +2,7 @@ package com.example.djalmacunha.app;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,12 +44,12 @@ public class GerenciaSenhas {
         return senhas;
     }
 
-    public List<User> retornarUser() {
-        return retornarUser(null);
+    public List<User> retornarUser(String usuario) {
+        return retornarUser(null,usuario);
     }
 
-    public List<User> retornarUser(String nomeB) {
-        String sql = "SELECT id,login,senha FROM user";
+    public List<User> retornarUser(String nomeB,String usuario) {
+        String sql = "SELECT id,login,senha FROM user WHERE login='"+usuario + "'";
         if (nomeB != null && !nomeB.equals(""))
             sql += " WHERE login LIKE %";
 
@@ -65,6 +66,7 @@ public class GerenciaSenhas {
         }
         dba.fecharConexao();
 
+
         return users;
     }
 
@@ -79,6 +81,16 @@ public class GerenciaSenhas {
     }
 
     public void salvarUser(User user) {
+
+        DBAdapter dba = new DBAdapter(ctx);
+        String sql = user.id == 0 ? "INSERT INTO user(login,senha)" +
+                " VALUES ('%s','%s')" : "UPDATE user SET login='%s',senha='%s'" +
+                " WHERE id=" + user.id;
+
+        sql = String.format(sql, user.login, user.senha);
+        dba.executarComandoSQL(sql);
+
+        /*
         DBAdapter dba = new DBAdapter(ctx);
         String sql = user.id == 0
                 ? "INSERT INTO user(login,senha) VALUES ('%s','%s')"
@@ -87,7 +99,7 @@ public class GerenciaSenhas {
         sql = String.format(sql, user.login, user.senha);
 
 
-        dba.executarComandoSQL(sql);
+        dba.executarComandoSQL(sql);*/
     }
 
     public void excluirSenha(int id){

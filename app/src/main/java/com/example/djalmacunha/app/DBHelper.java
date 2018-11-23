@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 // Classe de criação do banco
 
@@ -31,11 +32,15 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public String loginUser(String login, String senha) {
+        Log.d("O que recebo de login", login);
+        Log.d("O que recebo de senha", senha);
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM user WHERE login=? AND senha =?", new String[]{login, senha});
+
         if (c.getCount() > 0) {
             return "OK";
         }
+
         return "ERRO";
     }
 }

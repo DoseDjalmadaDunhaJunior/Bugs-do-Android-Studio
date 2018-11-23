@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -20,6 +19,8 @@ public class loginActivity extends AppCompatActivity{
     public EditText txtSenha;
     public DBHelper helper;
     public static String usuario;
+
+    DBHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,57 +39,39 @@ public class loginActivity extends AppCompatActivity{
         txtLogin = (EditText) findViewById(R.id.txtLogin);
         txtSenha = (EditText) findViewById(R.id.txtSenhaEdicao);
 
-        helper = new DBHelper(this);
+        db = new DBHelper(this);
     }
 
     // Verificando se o usuário está correto
     public void carregarUser(View view) {
 
-        String loginUser = txtLogin.getText().toString();
-        String senhaUser = txtSenha.getText().toString();
-        usuario = loginUser;
 
-        if(loginUser.equals("")) {
-            Toast.makeText(this, "Digite algum usuário para logar", Toast.LENGTH_SHORT).show();
-        }
-        else if(senhaUser.equals("")){
-            Toast.makeText(this, "Digite sua senha para logar", Toast.LENGTH_SHORT).show();
+        String username = txtLogin.getText().toString();
+        String password = txtSenha.getText().toString();
 
-        }
-        else {
+        usuario = username;
 
-            String res = helper.loginUser(loginUser,senhaUser);
-            if(res.equals("OK")){
-                startActivity(new Intent(this, menuActivity.class));
+        if (username.equals("")) {
+            Toast.makeText(loginActivity.this, "Não deixe o login vazio", Toast.LENGTH_SHORT).show();
+        } else if (password.equals("")) {
+            Toast.makeText(loginActivity.this, "Não deixe a senha vazia", Toast.LENGTH_SHORT).show();
 
-            }
-            else{
-                Toast.makeText(this, "Login ou senha incorretos. Tente novamente", Toast.LENGTH_SHORT).show();
+        } else {
 
-            }
-
-        }
-/*
-        List<User> users = new GerenciaSenhas(this).retornarUser();
-        if (users.size() == 0) {
-            Toast.makeText(this, "Não há nenhum usuário registrado", Toast.LENGTH_SHORT).show();
-            return;
-
-        }
-        ArrayAdapter<User> clientesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, users);
-
-        String loginUser = txtLogin.getText().toString();
-        String senhaUser = txtSenha.getText().toString();
-
-        for(int i = 0; i < clientesAdapter.getCount(); i++){
-            if(loginUser.equals(clientesAdapter.getItem(i).login) && senhaUser.equals(clientesAdapter.getItem(i).senha)) {
-                startActivity(new Intent(this, menuActivity.class));
+            String res = db.loginUser(username, password);
+            if (res.equals("OK")) {
+                startActivity(new Intent(loginActivity.this, menuActivity.class));
                 txtLogin.setText("");
                 txtSenha.setText("");
-                return;
+
+            } else {
+                Toast.makeText(loginActivity.this, "Login ou senha incorretos", Toast.LENGTH_SHORT).show();
+
             }
+
+
         }
-        Toast.makeText(this,"Usuário ou senha incorretos", Toast.LENGTH_SHORT).show();*/
+
     }
 
     // Chamando a classe de cadastro
