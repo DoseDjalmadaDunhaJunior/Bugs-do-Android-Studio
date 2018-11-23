@@ -21,9 +21,9 @@ public class adicionarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.adicionar);
 
-        txtSenha = (EditText)findViewById(R.id.txtSenhaEdicao);
-        txtLogin = (EditText)findViewById(R.id.txtLogin);
-        txtSite = (EditText)findViewById(R.id.txtSite);
+        txtSenha = (EditText)findViewById(R.id.txtSenhaUsuario);
+        txtLogin = (EditText)findViewById(R.id.txtLoginSenha);
+        txtSite = (EditText)findViewById(R.id.txtSiteSenha);
     }
 
     public void salvaSenha(View view){

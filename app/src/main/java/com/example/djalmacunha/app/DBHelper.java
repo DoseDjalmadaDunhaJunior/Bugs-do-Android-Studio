@@ -10,7 +10,7 @@ import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    static final String DATABASE_NAME = "senha.db";
+    static final String DATABASE_NAME = "passwords.db";
     static final int DATABASE_VERSION = 1;
 
     public DBHelper(Context context) {
