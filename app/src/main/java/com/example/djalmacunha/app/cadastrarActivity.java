@@ -28,7 +28,7 @@ public class cadastrarActivity extends AppCompatActivity {
 
     public void salvarUser(View view){
         if(txtUser.getText().toString().equals("") || txtSenha.getText().toString().equals("")){
-            Toast.makeText(this, "Não deixe nennum campo vazio", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Não deixe nenhum campo vazio", Toast.LENGTH_SHORT).show();
             return;
         }
 
